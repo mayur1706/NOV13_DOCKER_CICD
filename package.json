@@ -1,0 +1,13 @@
+{
+  "name": "cicd-docker-node-app",
+  "version": "1.0.0",
+  "description": "Basic Node.js server running on port 5000",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
+
