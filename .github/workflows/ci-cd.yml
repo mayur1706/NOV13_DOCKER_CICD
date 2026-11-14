@@ -34,3 +34,24 @@ jobs:
           context: .
           push: true
           tags: mayur1706/13nov-hub:latest
+
+  deploy-to-ec2:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to AWS EC2
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            docker pull mayur1706/13nov-hub:latest
+            docker rm -f 13nov-container || true
+            docker run -d \
+              --name 13nov-container \
+              -p 5000:5000 \
+              --restart unless-stopped \
+              mayur1706/13nov-hub:latest
+            docker ps
