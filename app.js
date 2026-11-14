@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 5000;
 
 app.get('/', (req, res) => {
   res.json({
-    message: 'Hello! Node.js server 5000 port par successfully run kar raha hai.',
+    message: 'Hello! Node.js server is running on 5000',
     status: 'success'
   });
 });
